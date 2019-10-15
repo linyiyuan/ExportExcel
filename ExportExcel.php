@@ -1,14 +1,18 @@
 <?php 
+ExportExcel($data);
+
 function ExportExcel($data) {
     try {
-        $url = '';
+        $url = '119.23.12.200:8001/api.php';
 
         $sendData['method'] = 'recodeAnyData';
         $sendData['data'] = $data;
 
-        $sendData = json_encode($sendData)
-        $res = gethttpcnt($url, $sendData);
+        $sendData = json_encode($sendData);
 
+        $res = gethttpcnt($url, $sendData);
+        var_dump($res);
+        exit;
 
         if (!$res) {
             throw Exception('Error！！');
@@ -22,6 +26,7 @@ function ExportExcel($data) {
             throw Exception('Error！！');
         }
     } catch (Exception $e) {
+        var_dump($e);
         return $e->getMessage();
     }
 }
@@ -33,7 +38,7 @@ function gethttpcnt($url,$data = array(),$username = '',$password = '',$timeout 
         curl_setopt($ch, CURLOPT_URL, $url);
 
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
@@ -50,4 +55,5 @@ function gethttpcnt($url,$data = array(),$username = '',$password = '',$timeout 
     }
     return $cnt;
 }
+
  ?>
