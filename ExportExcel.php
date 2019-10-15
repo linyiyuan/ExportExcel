@@ -1,26 +1,29 @@
 <?php 
 function ExportExcel($data) {
-	try {
-		$data = json_encode($data);
-		$url = '';
+    try {
+        $url = '';
 
-		$res = gethttpcnt($url = '', $data);
+        $sendData['method'] = 'recodeAnyData';
+        $sendData['data'] = $data;
+
+        $sendData = json_encode($sendData)
+        $res = gethttpcnt($url, $sendData);
 
 
-		if (!$res) {
-			throw Exception('Error！！');
-		}
+        if (!$res) {
+            throw Exception('Error！！');
+        }
 
-		$res = json_decode($res, true);
-		
-		if ($res['code'] == 200) {
-			return true;
-		}else{
-			throw Exception('Error！！');
-		}
-	} catch (Exception $e) {
-		return $e->getMessage();
-	}
+        $res = json_decode($res, true);
+        
+        if ($res['code'] == 200) {
+            return true;
+        }else{
+            throw Exception('Error！！');
+        }
+    } catch (Exception $e) {
+        return $e->getMessage();
+    }
 }
 
 
