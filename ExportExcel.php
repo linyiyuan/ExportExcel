@@ -11,19 +11,14 @@ function ExportExcel($data) {
         $sendData = json_encode($sendData);
 
         $res = gethttpcnt($url, $sendData);
-        if (!$res) {
-            throw Exception('Error！！');
-        }
+        if (!$res)  throw Exception('Error！！');
 
         $res = json_decode($res, true);
         
-        if ($res['code'] == 200) {
-            return true;
-        }else{
-            throw Exception('Error！！');
-        }
+        if ($res['code'] == 200)  return true;
+            
+        throw Exception('Error！！');
     } catch (Exception $e) {
-        var_dump($e);
         return $e->getMessage();
     }
 }
