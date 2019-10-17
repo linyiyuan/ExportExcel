@@ -3,7 +3,7 @@ ExportExcel($data);
 
 function ExportExcel($data) {
     try {
-        $url = '119.23.12.200:8001/api.php';
+        $url = '';
 
         $sendData['method'] = 'recodeAnyData';
         $sendData['data'] = $data;
@@ -11,9 +11,6 @@ function ExportExcel($data) {
         $sendData = json_encode($sendData);
 
         $res = gethttpcnt($url, $sendData);
-        var_dump($res);
-        exit;
-
         if (!$res) {
             throw Exception('Error！！');
         }
