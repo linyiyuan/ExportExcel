@@ -3,7 +3,7 @@ ExportExcel($data);
 
 function ExportExcel($data) {
     try {
-        $url = '';
+        $url = '127.0.0.1';
 
         $sendData['method'] = 'recodeAnyData';
         $sendData['data'] = $data;
@@ -24,7 +24,7 @@ function ExportExcel($data) {
 }
 
 
-function gethttpcnt($url,$data = array(),$username = '',$password = '',$timeout = 30, $mode = "POST"){
+function gethttpcnt($url,$data = array(), $timeout = 30, $mode = "POST"){
     try{
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -36,10 +36,6 @@ function gethttpcnt($url,$data = array(),$username = '',$password = '',$timeout 
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
 
-        if($username && $password){
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-            curl_setopt($ch, CURLOPT_USERPWD, $username.":".$password);
-        }
         $cnt = curl_exec($ch);
         curl_close($ch);
     }catch(Exception $e){
