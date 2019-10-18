@@ -15,9 +15,7 @@ function ExportExcel($data) {
 
         $res = json_decode($res, true);
         
-        if ($res['code'] == 200)  return true;
-            
-        throw Exception('Error！！');
+        var_dump($res);
     } catch (Exception $e) {
         return $e->getMessage();
     }
