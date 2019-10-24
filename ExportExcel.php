@@ -2,23 +2,7 @@
 ExportExcel($data);
 
 function ExportExcel($data) {
-    try {
-        $url = '127.0.0.1';
 
-        $sendData['method'] = 'recodeAnyData';
-        $sendData['data'] = $data;
-
-        $sendData = json_encode($sendData);
-
-        $res = gethttpcnt($url, $sendData);
-        if (!$res)  throw Exception('Error！！');
-
-        $res = json_decode($res, true);
-        
-        var_dump($res);
-    } catch (Exception $e) {
-        return $e->getMessage();
-    }
 }
 
 
